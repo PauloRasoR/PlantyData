@@ -8,7 +8,7 @@
         public string Referencia { get; set; }
         public int Ncm { get; set; }
         public int Cest { get; set; }
-        public int Gtin { get; set; }
+        public double Gtin { get; set; }
         public bool Ativo { get; set; }
 
     }

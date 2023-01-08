@@ -1,4 +1,12 @@
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using PlentyData.Data;
+using System.Configuration;
+
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddDbContext<PlentyDataContext>(options =>
+    options.UseMySql(builder.Configuration.GetConnectionString("PlentyDataContext"), Microsoft.EntityFrameworkCore.ServerVersion.Parse("8.0.25-mysql"), builder =>
+        builder.MigrationsAssembly("PlentyData")));
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
