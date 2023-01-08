@@ -15,5 +15,12 @@ namespace PlentyData.Data
         }
 
         public DbSet<PlentyData.Models.Produto> Produto { get; set; } = default!;
+
+        public DbSet<PlentyData.Models.Entidade> Entidade { get; set; }
+
+        public DbSet<PlentyData.Models.Endereco> Endereco { get; set; }
+        
+        public DbSet<PlentyData.Models.Telefone> Telefone { get; set; }
+
     }
 }
