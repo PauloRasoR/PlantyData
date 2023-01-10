@@ -10,6 +10,7 @@ namespace PlentyData.Models
         public int NumeroTelefone { get; set; }
         public bool Ativo { get; set; }
         public Entidade TelefoneEntidade { get; set; }
+        public int EntidadeId { get; set; }
 
         public Telefone()
         {

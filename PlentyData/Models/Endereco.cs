@@ -13,6 +13,7 @@ namespace PlentyData.Models
         public string Referencia { get; set; }
         public bool Ativo  { get; set; }
         public Entidade EnderecoEntidade { get; set; }  
+        public int EntidadeId { get; set; }
 
         public Endereco() 
         { 

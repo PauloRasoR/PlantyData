@@ -1,11 +1,12 @@
-﻿@model PlentyData.Models.Entidade
+﻿@model PlentyData.Models.Entidade;
 
 @{
     ViewData["Title"] = "Cadastrar";
 }
 
-<h3>Cliente</h3>
+<h3>Cliente</h3> 
 <h6>Cadastrar</h6>
+
 
 <hr />
 <div class="row">
@@ -52,15 +53,30 @@
                     <input class="form-check-input" asp-for="Ativo" /> @Html.DisplayNameFor(model => model.Ativo)
                 </label>
             </div>
-            <div class="form-group">
-                <input type="submit" value="Cadastrar" class="btn btn-primary" />
-            </div>
+            <div class="row">
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link active" data-bs-toggle="tab" href="#home" aria-selected="true" role="tab">Telefone(s)</a>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link " data-bs-toggle="tab" href="#home" aria-selected="true" role="tab" tabindex="-1">Endereço(s)</a>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link " data-bs-toggle="tab" href="#home" aria-selected="true" role="tab" tabindex="-1">E-mail(s)</a>
+                        </li>     
         </form>
     </div>
 </div>
-
-<div>
-    <a asp-action="Index">Voltar</a>
+<h1></h1>
+<h1></h1>
+<h1></h1>
+<h1></h1>
+<h1></h1>
+<hr />
+<h1></h1>
+<div class="form-group">
+    <input type="submit" value="Cadastrar" class="btn btn-info" />
+    <a asp-action="Index" class="btn btn-info" >Voltar</a>
 </div>
 
 @section Scripts {

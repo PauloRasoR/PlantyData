@@ -16,8 +16,7 @@ namespace PlentyData.Models
         public bool Ativo { get; set; }
         public ICollection<Endereco> Enderecos { get; set; } = new List<Endereco>();
         public ICollection<Telefone> Telefones { get; set; } = new List<Telefone>();
-
-
+        
         public Entidade() 
         { 
         }
