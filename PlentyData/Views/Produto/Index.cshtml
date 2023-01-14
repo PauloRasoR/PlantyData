@@ -24,6 +24,12 @@
                 @Html.DisplayName("Referência")
             </th>
             <th>
+                @Html.DisplayName("CodBar")
+            </th>
+            <th>
+                @Html.DisplayName("NCM")
+            </th>
+            <th>
                 @Html.DisplayName("Ativo")
             </th>
             <th>
@@ -43,6 +49,12 @@
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Referencia)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Gtin)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Ncm)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Ativo)

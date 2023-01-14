@@ -1,0 +1,78 @@
+﻿@model PlentyData.Models.ProdutoCadastro
+
+@{
+    ViewData["Title"] = "Produto";
+}
+
+<h3>@ViewData["Title"]</h3>
+<h1></h1>
+<h6>Novo Cadastro</h6>
+<hr></hr>
+
+<div class="row">
+    <div class="col-md-6">
+        <form asp-action="Create">
+            <div class="form-group">
+                <label asp-for="produto.Nome" class="control-label"></label>
+                <input asp-for="produto.Nome" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="produto.NomeDocumentoFiscal" DisplayName="Nome Doc.Fiscal" class="control-label"></label>
+                <input asp-for="produto.NomeDocumentoFiscal" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="produto.Referencia" DisplayName="Nome Doc.Fiscal" class="control-label"></label>
+                <input asp-for="produto.Referencia" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="produto.Gtin" DisplayName="Código de Barras" class="control-label"></label>
+                <input asp-for="produto.Gtin" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="produto.Ncm" class="control-label"></label>
+                <input asp-for="produto.Ncm" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="produto.Cest" class="control-label"></label>
+                <input asp-for="produto.Cest" class="form-control" />
+            <h1></h1>
+            <h1></h1>
+            <div>
+                  <ul class="nav nav-tabs" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link active" data-bs-toggle="tab" href="#Valores" aria-selected="false" role="tab">Valores</a>
+                        </li>                              
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link" data-bs-toggle="tab" href="#Quantidades" aria-selected="false" tabindex="-1" role="tab">Quantidades</a>
+                         </li>
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link" data-bs-toggle="tab" href="#Tipo" aria-selected="false" tabindex="-1" role="tab">Tipo Produto</a>
+                        </li>
+                  </ul>
+                  <div id="myTabContent" class="tab-content">
+                        <div class="tab-pane fade active show" id="Valores" role="tabpanel">
+                          <label asp-for="produtoValor.ValorCompra" class="control-label"></label>
+                          <input asp-for="produtoValor.ValorCompra" class="form-control" />
+
+                          <label asp-for="produtoValor.ValorCusto" class="control-label"></label>
+                          <input asp-for="produtoValor.ValorCusto" class="form-control" />
+
+                          <label asp-for="produtoValor.ValorCustoMedio" class="control-label"></label>
+                          <input asp-for="produtoValor.ValorCustoMedio" class="form-control" />
+                      </div>
+                      <div class="tab-pane fade" id="Quantidades" role="tabpanel">
+
+                      </div>
+                      <div class="tab-pane fade" id="Tipo" role="tabpanel">
+                          <label asp-for="produto.Tipo" class="control-label"></label>
+                          <input asp-for="produto.Tipo" class="form-control" />
+                      </div>
+                    </div>
+            </div>
+            <div class="form-group">
+                <h1></h1>
+                <input type="submit" value="Salvar" class="btn btn-info btn-sm" />
+            </div>
+        </form>
+    </div>
+</div>
