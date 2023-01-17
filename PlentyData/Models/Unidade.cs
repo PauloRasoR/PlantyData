@@ -7,7 +7,8 @@ namespace PlentyData.Models
         public int Id { get; set; }
         public string Abreviacao { get; set; }
         public string Nome { get; set; }
-        public Boolean Ativo { get; set; } 
+        public bool Ativo { get; set; } 
+        
         public Unidade()
         {
 

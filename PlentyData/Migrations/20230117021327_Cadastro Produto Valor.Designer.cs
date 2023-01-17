@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PlentyData.Data;
 
@@ -10,9 +11,10 @@ using PlentyData.Data;
 namespace PlentyData.Migrations
 {
     [DbContext(typeof(PlentyDataContext))]
-    partial class PlentyDataContextModelSnapshot : ModelSnapshot
+    [Migration("20230117021327_Cadastro Produto Valor")]
+    partial class CadastroProdutoValor
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

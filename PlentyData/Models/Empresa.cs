@@ -1,4 +1,6 @@
-﻿namespace PlentyData.Models
+﻿
+
+namespace PlentyData.Models
 {
     public class Empresa
     {
@@ -6,15 +8,15 @@
         public string CpfCnpj { get; set; }
         public string RazaoSocial { get; set; }
         public string NomeFantasia { get; set; }
-        public int IE { get; set; }
-        public Boolean Ativo { get; set; }
+        public string IE { get; set; }
+        public bool Ativo { get; set; }
 
         public Empresa()
         {
 
         }
 
-        public Empresa(int id, string cpfCnpj, string razaoSocial, string nomeFantasia, int iE, bool ativo)
+        public Empresa(int id, string cpfCnpj, string razaoSocial, string nomeFantasia, string iE, bool ativo)
         {
             Id = id;
             CpfCnpj = cpfCnpj;

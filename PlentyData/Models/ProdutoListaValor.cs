@@ -3,8 +3,8 @@
     public class ProdutoListaValor
     {
         public int id { get; set; }
-        public string nome { get; set; }
-        public Boolean Ativo { get; set; }
+        public string Nome { get; set; }
+        public bool Ativo { get; set; }
 
         public ProdutoListaValor()
         {
@@ -14,7 +14,7 @@
         public ProdutoListaValor(int id, string nome, bool ativo)
         {
             this.id = id;
-            this.nome = nome;
+            this.Nome = nome;
             Ativo = ativo;
         }
     }

@@ -12,8 +12,10 @@
         public decimal ValorCustoMedio { get; set; }
         public decimal PercentualLucro { get; set; }
         public decimal ValorVenda { get; set; }
-        public Boolean Ativo { get; set; }
-
+        public bool Ativo { get; set; }
+        public ICollection<Empresa> Empresas { get; set; } = new List<Empresa>();
+        public ICollection<Unidade> Unidades { get; set; } = new List<Unidade>();
+        public ICollection<ProdutoListaValor> ProdutoListaValores { get; set; } = new List<ProdutoListaValor>();
         public ProdutoValor()
         {
 
@@ -32,6 +34,36 @@
             PercentualLucro = percentualLucro;
             ValorVenda = valorVenda;
             Ativo = ativo;
+        }
+
+        public void AddEmpresa(Empresa _empresa)
+        {
+            Empresas.Add(_empresa);
+        }
+
+        public void RemoveEmpresa(Empresa _empresa)
+        {
+            Empresas.Remove(_empresa);
+        }
+
+        public void AddUnidade(Unidade _unidade)
+        {
+            Unidades.Add(_unidade);
+        }
+
+        public void RemoveUnidade(Unidade _unidade)
+        {
+            Unidades.Remove(_unidade);
+        }
+
+        public void AddProdutoListaValor(ProdutoListaValor _produtoListaValor)
+        {
+            ProdutoListaValores.Add(_produtoListaValor);
+        }
+
+        public void RemoveProdutoListaValor(ProdutoListaValor _produtoListaValor)
+        {
+            ProdutoListaValores.Remove(_produtoListaValor);
         }
     }
 }

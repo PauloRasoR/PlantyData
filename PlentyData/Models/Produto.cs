@@ -12,7 +12,7 @@ namespace PlentyData.Models
         public string Ncm { get; set; }
         public string Cest { get; set; }
         public TipoAgregadoEnum Tipo { get; set; }
-        public Boolean Ativo { get; set; }
+        public bool Ativo { get; set; }
         public ICollection<ProdutoValor> ProdutoValores { get; set; } = new List<ProdutoValor>();
 
         public Produto()

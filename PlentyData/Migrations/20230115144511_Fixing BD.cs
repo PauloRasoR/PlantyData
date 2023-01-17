@@ -5,32 +5,11 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace PlentyData.Migrations
 {
-    public partial class ProductBuilding : Migration
+    public partial class FixingBD : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AlterDatabase()
-                .Annotation("MySql:CharSet", "utf8mb4");
-
-            migrationBuilder.CreateTable(
-                name: "Empresa",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    CpfCnpj = table.Column<string>(type: "longtext", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    RazaoSocial = table.Column<string>(type: "longtext", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    NomeFantasia = table.Column<string>(type: "longtext", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    IE = table.Column<int>(type: "int", nullable: false),
-                    Ativo = table.Column<bool>(type: "tinyint(1)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Empresa", x => x.Id);
-                })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
@@ -77,24 +56,6 @@ namespace PlentyData.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
-                name: "Unidade",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    Abreviacao = table.Column<string>(type: "longtext", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    Nome = table.Column<string>(type: "longtext", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    Ativo = table.Column<bool>(type: "tinyint(1)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Unidade", x => x.Id);
-                })
-                .Annotation("MySql:CharSet", "utf8mb4");
-
-            migrationBuilder.CreateTable(
                 name: "ProdutoValor",
                 columns: table => new
                 {
@@ -123,10 +84,83 @@ namespace PlentyData.Migrations
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
+            migrationBuilder.CreateTable(
+                name: "Empresa",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    CpfCnpj = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    RazaoSocial = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    NomeFantasia = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    IE = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Ativo = table.Column<bool>(type: "tinyint(1)", nullable: false),
+                    ProdutoListaValorid = table.Column<int>(type: "int", nullable: true),
+                    ProdutoValorId = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Empresa", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Empresa_ProdutoListaValor_ProdutoListaValorid",
+                        column: x => x.ProdutoListaValorid,
+                        principalTable: "ProdutoListaValor",
+                        principalColumn: "id");
+                    table.ForeignKey(
+                        name: "FK_Empresa_ProdutoValor_ProdutoValorId",
+                        column: x => x.ProdutoValorId,
+                        principalTable: "ProdutoValor",
+                        principalColumn: "Id");
+                })
+                .Annotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.CreateTable(
+                name: "Unidade",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    Abreviacao = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Nome = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Ativo = table.Column<bool>(type: "tinyint(1)", nullable: false),
+                    ProdutoValorId = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Unidade", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Unidade_ProdutoValor_ProdutoValorId",
+                        column: x => x.ProdutoValorId,
+                        principalTable: "ProdutoValor",
+                        principalColumn: "Id");
+                })
+                .Annotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Empresa_ProdutoListaValorid",
+                table: "Empresa",
+                column: "ProdutoListaValorid");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Empresa_ProdutoValorId",
+                table: "Empresa",
+                column: "ProdutoValorId");
+
             migrationBuilder.CreateIndex(
                 name: "IX_ProdutoValor_ProdutoId",
                 table: "ProdutoValor",
                 column: "ProdutoId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Unidade_ProdutoValorId",
+                table: "Unidade",
+                column: "ProdutoValorId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -135,13 +169,13 @@ namespace PlentyData.Migrations
                 name: "Empresa");
 
             migrationBuilder.DropTable(
+                name: "Unidade");
+
+            migrationBuilder.DropTable(
                 name: "ProdutoListaValor");
 
             migrationBuilder.DropTable(
                 name: "ProdutoValor");
-
-            migrationBuilder.DropTable(
-                name: "Unidade");
 
             migrationBuilder.DropTable(
                 name: "Produto");

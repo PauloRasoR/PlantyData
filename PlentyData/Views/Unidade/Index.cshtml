@@ -1,0 +1,47 @@
+﻿@model IEnumerable<PlentyData.Models.Unidade>
+@{
+    ViewData["Title"] = "Unidade";
+}
+
+<h3>@ViewData["Title"]</h3>
+<h1></h1>
+<h5>Lista</h5>
+<hr></hr>
+<p>
+    <a asp-action="Create" class="btn btn-info btn-sm">Cadastrar Unidade</a>
+</p>
+
+<table class="table table-striped table-hover">
+    <thead>
+        <tr class="table-primary">
+            <th>
+                @Html.DisplayName("Abreviação")
+            </th>
+            <th>
+                @Html.DisplayName("Unidade")
+            </th>
+            <th>
+                @Html.DisplayName("Ativo")
+            </th>            
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Abreviacao)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nome)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Ativo)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+

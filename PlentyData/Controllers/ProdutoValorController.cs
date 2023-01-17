@@ -5,36 +5,36 @@ using PlentyData.Services;
 
 namespace PlentyData.Controllers
 {
-    public class ProdutoController : Controller
+    public class ProdutoValorController : Controller
     {
-        private readonly ProdutoService _produtoService;
+        private readonly ProdutoValorService _produtoValorService;
         private readonly EmpresaService _empresaService;
         private readonly UnidadeService _unidadeService;
 
-        public ProdutoController(ProdutoService produtoService, EmpresaService empresaService, UnidadeService unidadeService)
+        public ProdutoValorController(ProdutoValorService produtoValorService, EmpresaService empresaService, UnidadeService unidadeService)
         {
-            _produtoService = produtoService;
+            _produtoValorService = produtoValorService;
             _empresaService = empresaService;
-            _unidadeService = unidadeService;
+        
         }
         public IActionResult Index()
         {
-            var list = _produtoService.FindAll();
+            var list = _produtoValorService.FindAll();
             return View(list);
         }
 
         public IActionResult Create()
         {
             var empresa = _empresaService.FindAll();
-            var viewModel = new ProdutoCadastro { empresa = empresa };
+            var viewModel = new ProdutoCadastro { empresa = empresa }; 
             return View(viewModel);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create(Produto produto)
-        {
-            _produtoService.Insert(produto);
+        public IActionResult Create(ProdutoValor produtoValor)
+        {         
+            _produtoValorService.Insert(produtoValor);
             return RedirectToAction(nameof(Index));
         }
     }

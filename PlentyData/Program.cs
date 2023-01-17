@@ -11,6 +11,11 @@ builder.Services.AddDbContext<PlentyDataContext>(options =>
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<ProdutoService>();
+builder.Services.AddScoped<ProdutoValorService>();
+builder.Services.AddScoped<EmpresaService>();
+builder.Services.AddScoped<UnidadeService>();
+builder.Services.AddScoped<ProdutoListaValorService>();
+
 
 var app = builder.Build();
 

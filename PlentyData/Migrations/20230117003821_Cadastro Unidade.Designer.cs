@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PlentyData.Data;
 
@@ -10,9 +11,10 @@ using PlentyData.Data;
 namespace PlentyData.Migrations
 {
     [DbContext(typeof(PlentyDataContext))]
-    partial class PlentyDataContextModelSnapshot : ModelSnapshot
+    [Migration("20230117003821_Cadastro Unidade")]
+    partial class CadastroUnidade
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -40,6 +42,9 @@ namespace PlentyData.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
+                    b.Property<int?>("ProdutoListaValorid")
+                        .HasColumnType("int");
+
                     b.Property<int?>("ProdutoValorId")
                         .HasColumnType("int");
 
@@ -48,6 +53,8 @@ namespace PlentyData.Migrations
                         .HasColumnType("longtext");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ProdutoListaValorid");
 
                     b.HasIndex("ProdutoValorId");
 
@@ -104,16 +111,11 @@ namespace PlentyData.Migrations
                     b.Property<bool>("Ativo")
                         .HasColumnType("tinyint(1)");
 
-                    b.Property<string>("Nome")
+                    b.Property<string>("nome")
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<int?>("ProdutoValorId")
-                        .HasColumnType("int");
-
                     b.HasKey("id");
-
-                    b.HasIndex("ProdutoValorId");
 
                     b.ToTable("ProdutoListaValor");
                 });
@@ -190,15 +192,12 @@ namespace PlentyData.Migrations
 
             modelBuilder.Entity("PlentyData.Models.Empresa", b =>
                 {
+                    b.HasOne("PlentyData.Models.ProdutoListaValor", null)
+                        .WithMany("Empresas")
+                        .HasForeignKey("ProdutoListaValorid");
+
                     b.HasOne("PlentyData.Models.ProdutoValor", null)
                         .WithMany("Empresas")
-                        .HasForeignKey("ProdutoValorId");
-                });
-
-            modelBuilder.Entity("PlentyData.Models.ProdutoListaValor", b =>
-                {
-                    b.HasOne("PlentyData.Models.ProdutoValor", null)
-                        .WithMany("ProdutoListaValores")
                         .HasForeignKey("ProdutoValorId");
                 });
 
@@ -223,11 +222,14 @@ namespace PlentyData.Migrations
                     b.Navigation("ProdutoValores");
                 });
 
+            modelBuilder.Entity("PlentyData.Models.ProdutoListaValor", b =>
+                {
+                    b.Navigation("Empresas");
+                });
+
             modelBuilder.Entity("PlentyData.Models.ProdutoValor", b =>
                 {
                     b.Navigation("Empresas");
-
-                    b.Navigation("ProdutoListaValores");
 
                     b.Navigation("Unidades");
                 });
