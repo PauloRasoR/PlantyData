@@ -14,7 +14,7 @@ namespace PlentyData.Services
 
         public List<Empresa> FindAll()
         {
-            return _context.Empresa.OrderBy(x => x.Id).ToList();
+            return _context.Empresa.ToList();
         }
 
         public void Insert(Empresa obj)

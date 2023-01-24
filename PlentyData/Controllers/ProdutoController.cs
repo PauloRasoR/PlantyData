@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using PlentyData.Models;
+using PlentyData.Models.Enum;
 using PlentyData.Models.ViewModels;
 using PlentyData.Services;
 
@@ -8,14 +9,12 @@ namespace PlentyData.Controllers
     public class ProdutoController : Controller
     {
         private readonly ProdutoService _produtoService;
-        private readonly EmpresaService _empresaService;
         private readonly UnidadeService _unidadeService;
 
-        public ProdutoController(ProdutoService produtoService, EmpresaService empresaService, UnidadeService unidadeService)
+        public ProdutoController(ProdutoService produtoService, UnidadeService unidadeService)
         {
             _produtoService = produtoService;
-            _empresaService = empresaService;
-            _unidadeService = unidadeService;
+            _unidadeService = unidadeService;            
         }
         public IActionResult Index()
         {
@@ -25,11 +24,12 @@ namespace PlentyData.Controllers
 
         public IActionResult Create()
         {
-            var empresa = _empresaService.FindAll();
-            var viewModel = new ProdutoCadastro { empresa = empresa };
+            var unidade = _unidadeService.FindAll();            
+            var viewModel = new ProdutoCadastro { Unidade = unidade };
             return View(viewModel);
         }
 
+        
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Create(Produto produto)

@@ -11,8 +11,8 @@ using PlentyData.Data;
 namespace PlentyData.Migrations
 {
     [DbContext(typeof(PlentyDataContext))]
-    [Migration("20230115144511_Fixing BD")]
-    partial class FixingBD
+    [Migration("20230124015757_Product Register")]
+    partial class ProductRegister
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -42,21 +42,11 @@ namespace PlentyData.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<int?>("ProdutoListaValorid")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("ProdutoValorId")
-                        .HasColumnType("int");
-
                     b.Property<string>("RazaoSocial")
                         .IsRequired()
                         .HasColumnType("longtext");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("ProdutoListaValorid");
-
-                    b.HasIndex("ProdutoValorId");
 
                     b.ToTable("Empresa");
                 });
@@ -90,55 +80,17 @@ namespace PlentyData.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
+                    b.Property<decimal>("PercentualLucro")
+                        .HasColumnType("decimal(65,30)");
+
                     b.Property<string>("Referencia")
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<int>("Tipo")
+                    b.Property<int>("TipoProduto")
                         .HasColumnType("int");
 
-                    b.HasKey("Id");
-
-                    b.ToTable("Produto");
-                });
-
-            modelBuilder.Entity("PlentyData.Models.ProdutoListaValor", b =>
-                {
-                    b.Property<int>("id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<bool>("Ativo")
-                        .HasColumnType("tinyint(1)");
-
-                    b.Property<string>("nome")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.HasKey("id");
-
-                    b.ToTable("ProdutoListaValor");
-                });
-
-            modelBuilder.Entity("PlentyData.Models.ProdutoValor", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<bool>("Ativo")
-                        .HasColumnType("tinyint(1)");
-
-                    b.Property<int>("EmpresaId")
-                        .HasColumnType("int");
-
-                    b.Property<decimal>("PercentualLucro")
-                        .HasColumnType("decimal(65,30)");
-
-                    b.Property<int>("ProdutoId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ProdutoListaValorId")
+                    b.Property<int>("TipoProdutoId")
                         .HasColumnType("int");
 
                     b.Property<int>("UnidadeId")
@@ -158,9 +110,9 @@ namespace PlentyData.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ProdutoId");
+                    b.HasIndex("UnidadeId");
 
-                    b.ToTable("ProdutoValor");
+                    b.ToTable("Produto");
                 });
 
             modelBuilder.Entity("PlentyData.Models.Unidade", b =>
@@ -180,58 +132,37 @@ namespace PlentyData.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<int?>("ProdutoValorId")
+                    b.Property<int?>("ProdutoId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ProdutoValorId");
+                    b.HasIndex("ProdutoId");
 
                     b.ToTable("Unidade");
                 });
 
-            modelBuilder.Entity("PlentyData.Models.Empresa", b =>
+            modelBuilder.Entity("PlentyData.Models.Produto", b =>
                 {
-                    b.HasOne("PlentyData.Models.ProdutoListaValor", null)
-                        .WithMany("Empresas")
-                        .HasForeignKey("ProdutoListaValorid");
-
-                    b.HasOne("PlentyData.Models.ProdutoValor", null)
-                        .WithMany("Empresas")
-                        .HasForeignKey("ProdutoValorId");
-                });
-
-            modelBuilder.Entity("PlentyData.Models.ProdutoValor", b =>
-                {
-                    b.HasOne("PlentyData.Models.Produto", null)
-                        .WithMany("ProdutoValores")
-                        .HasForeignKey("ProdutoId")
+                    b.HasOne("PlentyData.Models.Unidade", "Unidade")
+                        .WithMany()
+                        .HasForeignKey("UnidadeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Unidade");
                 });
 
             modelBuilder.Entity("PlentyData.Models.Unidade", b =>
                 {
-                    b.HasOne("PlentyData.Models.ProdutoValor", null)
-                        .WithMany("Unidades")
-                        .HasForeignKey("ProdutoValorId");
+                    b.HasOne("PlentyData.Models.Produto", null)
+                        .WithMany("unidade")
+                        .HasForeignKey("ProdutoId");
                 });
 
             modelBuilder.Entity("PlentyData.Models.Produto", b =>
                 {
-                    b.Navigation("ProdutoValores");
-                });
-
-            modelBuilder.Entity("PlentyData.Models.ProdutoListaValor", b =>
-                {
-                    b.Navigation("Empresas");
-                });
-
-            modelBuilder.Entity("PlentyData.Models.ProdutoValor", b =>
-                {
-                    b.Navigation("Empresas");
-
-                    b.Navigation("Unidades");
+                    b.Navigation("unidade");
                 });
 #pragma warning restore 612, 618
         }

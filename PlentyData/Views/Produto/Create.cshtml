@@ -1,4 +1,5 @@
-﻿@model PlentyData.Models.ViewModels.ProdutoCadastro
+﻿@using PlentyData.Models.Enum
+@model PlentyData.Models.ViewModels.ProdutoCadastro
 
 @{
     ViewData["Title"] = "Produto";
@@ -29,6 +30,10 @@
                 <input asp-for="produto.Gtin" class="form-control" />
             </div>
             <div class="form-group">
+                <label asp-for="produto.UnidadeId" class="control-label"></label>
+                <select asp-for="produto.UnidadeId" asp-items="@(new SelectList(Model.Unidade,"Id", "Abreviacao"))" class="form-select" ></select>
+            </div>
+            <div class="form-group">
                 <label asp-for="produto.Ncm" class="control-label"></label>
                 <input asp-for="produto.Ncm" class="form-control" />
             </div>
@@ -37,13 +42,10 @@
                 <input asp-for="produto.Cest" class="form-control" />
                 <h1></h1>
                 <h1></h1>
-                <div>
+                <div class="col-md-12">
                     <ul class="nav nav-tabs" role="tablist">
                         <li class="nav-item" role="presentation">
                             <a class="nav-link active" data-bs-toggle="tab" href="#Valores" aria-selected="false" role="tab">Valores</a>
-                        </li>
-                        <li class="nav-item" role="presentation">
-                            <a class="nav-link" data-bs-toggle="tab" href="#Quantidades" aria-selected="false" tabindex="-1" role="tab">Quantidades</a>
                         </li>
                         <li class="nav-item" role="presentation">
                             <a class="nav-link" data-bs-toggle="tab" href="#Tipo" aria-selected="false" tabindex="-1" role="tab">Tipo Produto</a>
@@ -51,29 +53,50 @@
                     </ul>
                     <div id="myTabContent" class="tab-content">
                         <div class="tab-pane fade active show" id="Valores" role="tabpanel">
-                            <label asp-for="produtoValor.EmpresaId" class="control-label"></label>
-                            <select asp-for="produtoValor.EmpresaId" asp-items="@(new SelectList(Model.empresa, "Id", "NomeFantasia"))" class=" form-control"></select>
-                                                        
-                            <label asp-for="produtoValor.ValorCompra" class="control-label"></label>
-                            <input asp-for="produtoValor.ValorCompra" class="form-control" />
-
-                            <label asp-for="produtoValor.ValorCusto" class="control-label"></label>
-                            <input asp-for="produtoValor.ValorCusto" class="form-control" />
-
-                            <label asp-for="produtoValor.ValorCustoMedio" class="control-label"></label>
-                            <input asp-for="produtoValor.ValorCustoMedio" class="form-control" />
-
-                            <label asp-for="produtoValor.PercentualLucro" class="control-label"></label>
-                            <input asp-for="produtoValor.PercentualLucro" class="form-control" />
-
-                            <label asp-for="produtoValor.ValorVenda" class="control-label"></label>
-                            <input asp-for="produtoValor.ValorVenda" class="form-control" />
-                        </div>
-                        <div class="tab-pane fade" id="Quantidades" role="tabpanel">
+                            <table>
+                                <thead>
+                                    <tr class="table table-striped table-hover">
+                                        <th class="table-info">
+                                            <label asp-for="produto.ValorCompra" class="control-label"></label>
+                                        </th>
+                                        <th scope="col">
+                                            <label asp-for="produto.ValorCusto" class="control-label"></label>
+                                        </th>
+                                        <th>
+                                            <label asp-for="produto.ValorCustoMedio" class="control-label"></label>
+                                        </th scope="col">
+                                        <th>
+                                            <label asp-for="produto.PercentualLucro" class="control-label"></label>
+                                        </th scope="col">
+                                        <th>
+                                            <label asp-for="produto.ValorVenda" class="control-label"></label>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">
+                                            <input asp-for="produto.ValorCompra" class="form-control" />
+                                        </th>
+                                        <th>                            
+                                            <input asp-for="produto.ValorCusto" class="form-control" />
+                                        </th>
+                                        <th>                            
+                                            <input asp-for="produto.ValorCustoMedio" class="form-control" />
+                                        </th>
+                                        <th>                            
+                                            <input asp-for="produto.PercentualLucro" class="form-control" />
+                                        </th>
+                                        <th>                            
+                                            <input asp-for="produto.ValorVenda" class="form-control" />
+                                        </th>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
                         <div class="tab-pane fade" id="Tipo" role="tabpanel">
-                            <label asp-for="produto.Tipo" class="control-label"></label>
-                            <input asp-for="produto.Tipo" class="form-control" />
+                            <label asp-for="produto.TipoProdutoId" class="control-label"></label>
+                            <select asp-for="produto.TipoProdutoId" asp-items="Html.GetEnumSelectList<TipoAgregadoEnum>()" class="form-select"></select>
                         </div>
                     </div>
                 </div>

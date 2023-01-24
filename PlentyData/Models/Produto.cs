@@ -1,9 +1,13 @@
-﻿using PlentyData.Models.Enuns;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using PlentyData.Models.Enum;
 
 namespace PlentyData.Models
 {
     public class Produto
     {
+        [Key]
         public int Id { get; set; }
         public string Nome { get; set; }
         public string NomeDocumentoFiscal { get; set; }
@@ -11,16 +15,26 @@ namespace PlentyData.Models
         public string Gtin { get; set; }
         public string Ncm { get; set; }
         public string Cest { get; set; }
-        public TipoAgregadoEnum Tipo { get; set; }
+        public Unidade Unidade { get; set; }
+        public int UnidadeId { get; set; }
+        public TipoAgregadoEnum TipoProduto { get; set; }
+        public int TipoProdutoId { get; set; } 
+        public decimal ValorCompra { get; set; }
+        public decimal ValorCusto { get; set; }
+        public decimal ValorCustoMedio { get; set; }
+        public decimal PercentualLucro { get; set; }
+        public decimal ValorVenda { get; set; }
         public bool Ativo { get; set; }
-        public ICollection<ProdutoValor> ProdutoValores { get; set; } = new List<ProdutoValor>();
+        public ICollection<Unidade> unidade { get; set; } = new List<Unidade>();
+        [NotMapped]
+        public IEnumerable<SelectListItem> tipoProduto { get; set; } 
 
         public Produto()
         {
 
         }
 
-        public Produto(int id, string nome, string nomeDocumentoFiscal, string referencia, string gtin, string ncm, string cest, TipoAgregadoEnum tipo, bool ativo)
+        public Produto(int id, string nome, string nomeDocumentoFiscal, string referencia, string gtin, string ncm, string cest, bool ativo)
         {
             Id = id;
             Nome = nome;
@@ -29,19 +43,18 @@ namespace PlentyData.Models
             Gtin = gtin;
             Ncm = ncm;
             Cest = cest;
-            Tipo = tipo;
             Ativo = ativo;
         }
 
-        public void AddProdutoValor(ProdutoValor _produtovalor)
+        public void AddUnidade(Unidade _unidade)
         {
-            ProdutoValores.Add(_produtovalor);
+            unidade.Add(_unidade);
         }
 
-        public void RemoveProdutovalor(ProdutoValor _produtoValor)
+        public void RemoveUnidade(Unidade _unidade)
         {
-            ProdutoValores.Remove(_produtoValor);
+            unidade.Remove(_unidade);
         }
-
+               
     }
 }
