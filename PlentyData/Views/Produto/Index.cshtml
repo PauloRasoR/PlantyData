@@ -59,6 +59,9 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.Ativo)
                 </td>
+                <td>
+                    <bottom><a asp-action="Edit" class="btn btn-info btn-sm" asp-route-id="@item.Id">Editar</a></bottom>
+                </td>
 
             </tr>
         }
