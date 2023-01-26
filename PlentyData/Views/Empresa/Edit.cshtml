@@ -1,0 +1,46 @@
+﻿@model PlentyData.Models.ViewModels.EmpresaEditar
+
+@{
+    ViewData["Title"] = "Empresa";
+}
+
+<h3>@ViewData["Title"]</h3>
+<h1></h1>
+<h6>Editar</h6>
+<hr></hr>
+
+<div class="row">
+    <div class="col-md-6">
+        <form asp-action="Edit">
+            <div class="form-group">
+                <input type=hidden asp-for="empresa.Id" />
+                <label asp-for="empresa.RazaoSocial" class="control-label"></label>
+                <input asp-for="empresa.RazaoSocial" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="empresa.NomeFantasia" class="control-label"></label>
+                <input asp-for="empresa.NomeFantasia" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="empresa.CpfCnpj" class="control-label"></label>
+                <input asp-for="empresa.CpfCnpj" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="empresa.IE" class="control-label"></label>
+                <input asp-for="empresa.IE" class="form-control" />
+            </div>
+            <h1></h1>
+            <hr></her>
+            <h1></h1>
+            <div class="form-check form-switch">
+                <input asp-for="empresa.Ativo" class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked="">
+                <label asp-for="empresa.Ativo" class="form-check-label" for="flexSwitchCheckChecked"></label>
+            </div>
+            <div class="form-group">
+                <h1></h1>
+                <input type="submit" value="Salvar" class="btn btn-info btn-sm" />
+                <bottom><a asp-action="Index" class="btn btn-outline-light btn-sm">Voltar</a></bottom>
+            </div>
+        </form>
+    </div>
+</div>

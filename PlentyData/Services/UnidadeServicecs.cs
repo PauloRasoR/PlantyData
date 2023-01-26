@@ -1,5 +1,7 @@
-﻿using PlentyData.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using PlentyData.Data;
 using PlentyData.Models;
+using PlentyData.Services.Exceptions;
 
 namespace PlentyData.Services
 {
@@ -21,6 +23,28 @@ namespace PlentyData.Services
         {
             _context.Add(obj);
             _context.SaveChanges();
+        }
+
+        public Unidade FindById(int id)
+        {
+            return _context.Unidade.FirstOrDefault(unidade => unidade.Id == id);
+        }
+
+        public void Update(Unidade unidade)
+        {
+            if (!_context.Unidade.Any(x => x.Id == unidade.Id))
+            {
+                throw new NotFoundException("Produto Não Encontrado");
+            }
+            try
+            {
+                _context.Update(unidade);
+                _context.SaveChanges();
+            }
+            catch (DbUpdateConcurrencyException e)
+            {
+                throw new DbConcurrencyException(e.Message);
+            }
         }
     }
 }
