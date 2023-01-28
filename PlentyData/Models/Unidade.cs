@@ -1,11 +1,18 @@
-﻿using System.Security.Cryptography.X509Certificates;
+﻿using System.ComponentModel.DataAnnotations;
+using System.Security.Cryptography.X509Certificates;
 
 namespace PlentyData.Models
 {
     public class Unidade
     {
         public int Id { get; set; }
+
+        [Required]
+        [Display(Name = "Unidade")]
         public string Abreviacao { get; set; }
+
+        [Required]
+        [Display(Name = "Descrição")]
         public string Nome { get; set; }
         public bool Ativo { get; set; } 
         

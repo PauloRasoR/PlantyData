@@ -5,13 +5,13 @@
     ViewData["Title"] = "Produto";
 }
 
-<h3>@ViewData["Title"]</h3>
+<h5>@ViewData["Title"]</h5>
 <h1></h1>
-<h6>Editar</h6>
+<p>Editar</p>
 <hr></hr>
 
 <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-10">
         <form asp-action="Edit">
             <input type=hidden asp-for="produto.Id"/>
             <div class="form-group">
@@ -77,19 +77,19 @@
                                 <tbody>
                                     <tr>
                                         <th scope="row">
-                                            <input asp-for="produto.ValorCompra" class="form-control" />
+                                            <input asp-for="produto.ValorCompra" style="text-align:right" class="form-control" />
                                         </th>
                                         <th>                            
-                                            <input asp-for="produto.ValorCusto" class="form-control" />
+                                            <input asp-for="produto.ValorCusto" style="text-align:right" class="form-control" />
                                         </th>
                                         <th>                            
-                                            <input asp-for="produto.ValorCustoMedio" class="form-control" />
+                                            <input asp-for="produto.ValorCustoMedio" style="text-align:right" class="form-control" />
                                         </th>
                                         <th>                            
-                                            <input asp-for="produto.PercentualLucro" class="form-control" />
+                                            <input asp-for="produto.PercentualLucro" style="text-align:right" class="form-control" />
                                         </th>
                                         <th>                            
-                                            <input asp-for="produto.ValorVenda" class="form-control" />
+                                            <input asp-for="produto.ValorVenda" style="text-align:right" class="form-control" />
                                         </th>
                                     </tr>
                                 </tbody>

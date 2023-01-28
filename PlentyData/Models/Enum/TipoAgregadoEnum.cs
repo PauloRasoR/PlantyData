@@ -2,8 +2,7 @@
 {
     public enum TipoAgregadoEnum : int
     {
-        Nenhum = 0,
-        Mercadoria = 1,
-        Insumo = 2
+        Mercadoria = 0,
+        Insumo = 1
     }
 }

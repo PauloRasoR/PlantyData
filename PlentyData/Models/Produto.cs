@@ -10,20 +10,58 @@ namespace PlentyData.Models
     {
         [Key]
         public int Id { get; set; }
+
+        [Required]
+        [Display(Name = "Descrição *")]
         public string Nome { get; set; }
+
+        [Required]
+        [Display(Name = "Descrição Documento Fiscal *")]
         public string NomeDocumentoFiscal { get; set; }
+
+        [Required]
+        [Display(Name = "Referência")]
         public string Referencia { get; set; }
+
+        [Required]
+        [Display(Name = "Código de Barras (EAN) *")]
         public string Gtin { get; set; }
+
+        [Required(ErrorMessage ="Deve ser informado um código NCM")]       
+        [Display(Name = "Código NCM *")]
         public string Ncm { get; set; }
+
+        [Required(ErrorMessage = "Deve ser informado um código CEST")]
+        [Display(Name = "Código CEST *")]
         public string Cest { get; set; }
         public Unidade Unidade { get; set; }
+
+        [Required]
+        [Display(Name = "Unidade")]
         public int UnidadeId { get; set; }
         public TipoAgregadoEnum TipoProduto { get; set; }
-        public int TipoProdutoId { get; set; } 
+
+        [Required]
+        [Display(Name = "Tipo de Produto")]
+        public int TipoProdutoId { get; set; }
+
+        [Required]
+        [Display(Name = "Compra")]
         public decimal ValorCompra { get; set; }
+
+        [Display(Name = "Custo")]
+        [DisplayFormat(DataFormatString = "{0:F2}")]
         public decimal ValorCusto { get; set; }
+
+        [Required]
+        [Display(Name = "Custo Médio")]
         public decimal ValorCustoMedio { get; set; }
+        
+        [Display(Name = "% Lucro")]
         public decimal PercentualLucro { get; set; }
+
+        [Required(ErrorMessage = "Deve ser informado valor de venda maior que 0,00")]
+        [Display(Name = "Venda")]
         public decimal ValorVenda { get; set; }
         public bool Ativo { get; set; }
         public ICollection<Unidade> unidade { get; set; } = new List<Unidade>();

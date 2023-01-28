@@ -3,18 +3,20 @@
     ViewData["Title"] = "Empresa";
 }
 
-<h3>@ViewData["Title"]</h3>
+
+<h5>@ViewData["Title"]</h5>
 <h1></h1>
-<h5>Dados Cadastrais</h5>
-<hr></hr>
-<p>
+<p>Dados Cadastrais</p>
+<p style="text-align:right">
     <a asp-action="Create" class="btn btn-info btn-sm">Cadastrar Empresa</a>
 </p>
+<hr></hr>
+
 
 <table class="table table-striped table-hover">
     <thead>
         <tr class="table-primary">
-            <th>
+            <th style="text-align:center">
                 @Html.DisplayName("Código")
             </th>
             <th>
@@ -29,10 +31,10 @@
             <th>
                 @Html.DisplayName("IE")
             </th>
-            <th>
+            <th style="text-align:center">
                 @Html.DisplayName("Ativo")
             </th>
-            <th>
+            <th style="text-align:center">
                 @Html.DisplayName("Ações")
             </th>
         </tr>
@@ -41,7 +43,7 @@
         @foreach (var item in Model)
         {
             <tr>
-                <td>
+                <td style="text-align:center">
                     @Html.DisplayFor(modelItem => item.Id)
                 </td>
                 <td>
@@ -56,10 +58,10 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.IE)
                 </td>
-                <td>
+                <td style="text-align:center">
                     @Html.DisplayFor(modelItem => item.Ativo)
                 </td>
-                <td>
+                <td style="text-align:center">
                 <bottom><a asp-action="Edit" class="btn btn-info btn-sm" asp-route-id="@item.Id">Editar</a></bottom>
                 </td>
             </tr>
