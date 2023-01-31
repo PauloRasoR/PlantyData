@@ -11,36 +11,43 @@
 <hr></hr>
 
 <div class="row">
-    <div class="col-md-10">
+    <div class="col-12" style="display: fixed">
         <form asp-action="Edit">
-            <input type=hidden asp-for="produto.Id"/>
-            <div class="form-group">
-                <label asp-for="produto.Nome" class="control-label"></label>
-                <input asp-for="produto.Nome" class="form-control" />
+                <input type=hidden asp-for="produto.Id"/>
+                <div class="col-12" style="display: flex ">
+                <div class="form-group col-md-8">
+                    <label asp-for="produto.Nome" class="control-label"></label>
+                    <input asp-for="produto.Nome" class="form-control" />
+                </div>
+                <div class="form-group col-md-4">
+                    <label asp-for="produto.Referencia" DisplayName="Nome Doc.Fiscal" class="control-label"></label>
+                    <input asp-for="produto.Referencia" class="form-control" />
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="produto.NomeDocumentoFiscal" DisplayName="Nome Doc.Fiscal" class="control-label"></label>
-                <input asp-for="produto.NomeDocumentoFiscal" class="form-control" />
+            <div class="col-12" style="display: flex">
+                <div class="form-group col-md-8">
+                    <label asp-for="produto.NomeDocumentoFiscal" DisplayName="Nome Doc.Fiscal" class="control-label"></label>
+                    <input asp-for="produto.NomeDocumentoFiscal" class="form-control" />
+                </div>
+                <div class="form-group col-md-4">
+                    <label asp-for="produto.Gtin" DisplayName="Código de Barras" class="control-label"></label>
+                    <input asp-for="produto.Gtin" class="form-control" />
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="produto.Referencia" DisplayName="Nome Doc.Fiscal" class="control-label"></label>
-                <input asp-for="produto.Referencia" class="form-control" />
+            <div class="col-md-12" style="display: flex">
+                <div class="form-group col-md-4">
+                    <label asp-for="produto.UnidadeId" class="control-label"></label>
+                    <select asp-for="produto.UnidadeId" asp-items="@(new SelectList(Model.Unidade,"Id", "Abreviacao"))" class="form-select" ></select>
+                </div>
+                <div class="form-group col-md-4">
+                    <label asp-for="produto.Ncm" class="control-label"></label>
+                    <input asp-for="produto.Ncm" class="form-control" />
+                </div>
+                <div class="form-group col-md-4">
+                    <label asp-for="produto.Cest" class="control-label"></label>
+                    <input asp-for="produto.Cest" class="form-control" />
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="produto.Gtin" DisplayName="Código de Barras" class="control-label"></label>
-                <input asp-for="produto.Gtin" class="form-control" />
-            </div>
-            <div class="form-group">
-                <label asp-for="produto.UnidadeId" class="control-label"></label>
-                <select asp-for="produto.UnidadeId" asp-items="@(new SelectList(Model.Unidade,"Id", "Abreviacao"))" class="form-select" ></select>
-            </div>
-            <div class="form-group">
-                <label asp-for="produto.Ncm" class="control-label"></label>
-                <input asp-for="produto.Ncm" class="form-control" />
-            </div>
-            <div class="form-group">
-                <label asp-for="produto.Cest" class="control-label"></label>
-                <input asp-for="produto.Cest" class="form-control" />
                 <h1></h1>
                 <h1></h1>
                 <div class="col-md-12">
@@ -49,34 +56,37 @@
                             <a class="nav-link active" data-bs-toggle="tab" href="#Valores" aria-selected="false" role="tab">Valores</a>
                         </li>
                         <li class="nav-item" role="presentation">
+                            <a class="nav-link" data-bs-toggle="tab" href="#Estoque" aria-selected="false" tabindex="-1" role="tab">Estoque</a>
+                        </li>
+                        <li class="nav-item" role="presentation">
                             <a class="nav-link" data-bs-toggle="tab" href="#Tipo" aria-selected="false" tabindex="-1" role="tab">Tipo Produto</a>
                         </li>
                     </ul>
                     <div id="myTabContent" class="tab-content">
                         <div class="tab-pane fade active show" id="Valores" role="tabpanel">
-                            <table>
-                                <thead>
+                            <table style="table-layout:fixed" class="col-md-12">
+                                <thead style="text-align:right">
                                     <tr class="table table-striped table-hover">
                                         <th class="table-info">
-                                            <label asp-for="produto.ValorCompra" class="control-label"></label>
-                                        </th>
-                                        <th scope="col">
-                                            <label asp-for="produto.ValorCusto" class="control-label"></label>
+                                            <label asp-for="produto.ValorCompra" style="text-align:right" class="control-label"></label>
                                         </th>
                                         <th>
-                                            <label asp-for="produto.ValorCustoMedio" class="control-label"></label>
-                                        </th scope="col">
+                                            <label asp-for="produto.ValorCusto" style="text-align:right" class="control-label"></label>
+                                        </th>
                                         <th>
-                                            <label asp-for="produto.PercentualLucro" class="control-label"></label>
-                                        </th scope="col">
+                                            <label asp-for="produto.ValorCustoMedio" style="text-align:right" class="control-label"></label>
+                                        </th>
                                         <th>
-                                            <label asp-for="produto.ValorVenda" class="control-label"></label>
+                                            <label asp-for="produto.PercentualLucro" style="text-align:right" class="control-label"></label>
+                                        </th>
+                                        <th>
+                                            <label asp-for="produto.ValorVenda" style="text-align:right" class="control-label"></label>
                                         </th>
                                     </tr>
                                 </thead>
-                                <tbody>
+                                <tbody>                                    
                                     <tr>
-                                        <th scope="row">
+                                        <th>
                                             <input asp-for="produto.ValorCompra" style="text-align:right" class="form-control" />
                                         </th>
                                         <th>                            
@@ -94,22 +104,51 @@
                                     </tr>
                                 </tbody>
                             </table>
+                        </div>                        
+                        <div class="tab-pane fade show" id="Estoque" role="tabpanel">
+                            <table class="col-md-12">
+                                <thead style="text-align:right">
+                                        <tr class="table table-striped table-hover">                                            
+                                            <th>
+                                                <label asp-for="produto.EstoqueEntrada" for="disabledInput" style="text-align:right" class="control-label"></label>
+                                            </th>
+                                            <th>
+                                                <label asp-for="produto.EstoqueSaida" for="disabledInput" style="text-align:right" class="control-label"></label>
+                                            </th>
+                                            <th>
+                                                <label asp-for="produto.EstoqueSaldo" for="disabledInput" style="text-align:right" class="control-label"></label>
+                                            </th>                                          
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>                                            
+                                            <th>
+                                                <input asp-for="produto.EstoqueEntrada" id="disabledInput" placeholder="0,00" disabled="" style="text-align:right" class="form-control" />
+                                            </th>
+                                            <th>                            
+                                                <input asp-for="produto.EstoqueSaida" id="disabledInput" placeholder="0,00" disabled="" style="text-align:right" class="form-control" />
+                                            </th>
+                                            <th>
+                                            <input asp-for="produto.EstoqueSaldo" id="disabledInput" placeholder="0,00" disabled="" style="text-align:right" class="form-control" />
+                                            </th>
+                                        </tr>
+                                </tbody>
+                            </table>
                         </div>
-                        <div class="tab-pane fade" id="Tipo" role="tabpanel">
+                        <div class="tab-pane fade col-md-6" id="Tipo" role="tabpanel">
                             <label asp-for="produto.TipoProdutoId" class="control-label"></label>
                             <select asp-for="produto.TipoProdutoId" asp-items="Html.GetEnumSelectList<TipoAgregadoEnum>()" class="form-select"></select>
                         </div>
                     </div>
+                </div>            
+                <h1></h1>
+                <hr></hr>
+                <h1></h1>
+                <div class="form-check form-switch">
+                    <input asp-for="produto.Ativo" class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked="">
+                    <label asp-for="produto.Ativo" class="form-check-label" for="flexSwitchCheckChecked"></label>
                 </div>
-            </div>
-            <h1></h1>
-            <hr></her>
-            <h1></h1>
-            <div class="form-check form-switch">
-                <input asp-for="produto.Ativo" class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked="">
-                <label asp-for="produto.Ativo" class="form-check-label" for="flexSwitchCheckChecked"></label>
-            </div>
-                <div class="form-group">
+                <div style="text-align:right"  class="form-group">
                     <h1></h1>
                     <input type="submit" value="Salvar" class="btn btn-info btn-sm" />
                     <bottom><a asp-action="Index" class="btn btn-outline-light btn-sm">Voltar</a></bottom>

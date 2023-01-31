@@ -15,6 +15,6 @@ namespace PlentyData.Data
         public DbSet<Produto> Produto{ get; set; }
         public DbSet<Unidade> Unidade { get; set; }
         public DbSet<Empresa> Empresa { get; set; }
-        
+
     }
 }

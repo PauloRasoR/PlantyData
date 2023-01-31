@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.CodeAnalysis.FlowAnalysis.DataFlow;
 using PlentyData.Models;
 using PlentyData.Models.Enum;
 using PlentyData.Models.ViewModels;
@@ -16,17 +17,17 @@ namespace PlentyData.Controllers
         public ProdutoController(ProdutoService produtoService, UnidadeService unidadeService)
         {
             _produtoService = produtoService;
-            _unidadeService = unidadeService;            
+            _unidadeService = unidadeService;
         }
         public IActionResult Index()
         {
-            var list = _produtoService.FindAll();
+            var list = _produtoService.FindAll();        
             return View(list);
         }
 
         public IActionResult Create()
         {
-            var unidade = _unidadeService.FindAll();            
+            var unidade = _unidadeService.FindAll();
             var viewModel = new ProdutoCadastro { Unidade = unidade };
             return View(viewModel);
         }
@@ -39,7 +40,6 @@ namespace PlentyData.Controllers
             _produtoService.Insert(produto);
             return RedirectToAction(nameof(Index));
         }
-
 
         public IActionResult Edit(int? id)
         {
@@ -55,7 +55,7 @@ namespace PlentyData.Controllers
             }
 
             List<Unidade> unidades = _unidadeService.FindAll();
-            ProdutoCadastro viewModel = new ProdutoCadastro { produto = prod, Unidade = unidades };
+            ProdutoCadastro viewModel = new ProdutoCadastro { Unidade = unidades, produto = prod };
             return View(viewModel);
         }
 

@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PlentyData.Data;
 
@@ -10,9 +11,10 @@ using PlentyData.Data;
 namespace PlentyData.Migrations
 {
     [DbContext(typeof(PlentyDataContext))]
-    partial class PlentyDataContextModelSnapshot : ModelSnapshot
+    [Migration("20230130002621_ProdutoEstoque Empresa")]
+    partial class ProdutoEstoqueEmpresa
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -61,15 +63,6 @@ namespace PlentyData.Migrations
                     b.Property<string>("Cest")
                         .IsRequired()
                         .HasColumnType("longtext");
-
-                    b.Property<decimal>("EstoqueEntrada")
-                        .HasColumnType("decimal(65,30)");
-
-                    b.Property<decimal>("EstoqueSaida")
-                        .HasColumnType("decimal(65,30)");
-
-                    b.Property<decimal>("EstoqueSaldo")
-                        .HasColumnType("decimal(65,30)");
 
                     b.Property<string>("Gtin")
                         .IsRequired()
@@ -122,6 +115,36 @@ namespace PlentyData.Migrations
                     b.ToTable("Produto");
                 });
 
+            modelBuilder.Entity("PlentyData.Models.ProdutoEstoque", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<int>("EmpresaId")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("EstoqueEntrada")
+                        .HasColumnType("decimal(65,30)");
+
+                    b.Property<decimal>("EstoqueSaida")
+                        .HasColumnType("decimal(65,30)");
+
+                    b.Property<decimal>("EstoqueSaldo")
+                        .HasColumnType("decimal(65,30)");
+
+                    b.Property<int>("ProdutoId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("EmpresaId");
+
+                    b.HasIndex("ProdutoId");
+
+                    b.ToTable("ProdutoEstoque");
+                });
+
             modelBuilder.Entity("PlentyData.Models.Unidade", b =>
                 {
                     b.Property<int>("Id")
@@ -160,6 +183,25 @@ namespace PlentyData.Migrations
                     b.Navigation("Unidade");
                 });
 
+            modelBuilder.Entity("PlentyData.Models.ProdutoEstoque", b =>
+                {
+                    b.HasOne("PlentyData.Models.Empresa", "Empresa")
+                        .WithMany()
+                        .HasForeignKey("EmpresaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("PlentyData.Models.Produto", "Produto")
+                        .WithMany("ProdutoEstoques")
+                        .HasForeignKey("ProdutoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Empresa");
+
+                    b.Navigation("Produto");
+                });
+
             modelBuilder.Entity("PlentyData.Models.Unidade", b =>
                 {
                     b.HasOne("PlentyData.Models.Produto", null)
@@ -169,6 +211,8 @@ namespace PlentyData.Migrations
 
             modelBuilder.Entity("PlentyData.Models.Produto", b =>
                 {
+                    b.Navigation("ProdutoEstoques");
+
                     b.Navigation("unidade");
                 });
 #pragma warning restore 612, 618

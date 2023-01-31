@@ -63,17 +63,26 @@ namespace PlentyData.Models
         [Required(ErrorMessage = "Deve ser informado valor de venda maior que 0,00")]
         [Display(Name = "Venda")]
         public decimal ValorVenda { get; set; }
+
+        [Display(Name = "Quantidade Entrada")]
+        public decimal EstoqueEntrada { get; set; }
+
+        [Display(Name = "Quantidade Saída")]
+        public decimal EstoqueSaida { get; set; }
+
+        [Display(Name = "Quantidade Saldo")]
+        public decimal EstoqueSaldo { get; set; }
         public bool Ativo { get; set; }
         public ICollection<Unidade> unidade { get; set; } = new List<Unidade>();
         [NotMapped]
-        public IEnumerable<SelectListItem> tipoProduto { get; set; } 
+        public IEnumerable<SelectListItem> tipoProduto { get; set; }
 
         public Produto()
         {
 
         }
 
-        public Produto(int id, string nome, string nomeDocumentoFiscal, string referencia, string gtin, string ncm, string cest, bool ativo)
+        public Produto(int id, string nome, string nomeDocumentoFiscal, string referencia, string gtin, string ncm, string cest, int unidadeId, int tipoProdutoId, decimal valorCompra, decimal valorCusto, decimal valorCustoMedio, decimal percentualLucro, decimal valorVenda, decimal estoqueEntrada, decimal estoqueSaida, decimal estoqueSaldo, bool ativo)
         {
             Id = id;
             Nome = nome;
@@ -82,6 +91,16 @@ namespace PlentyData.Models
             Gtin = gtin;
             Ncm = ncm;
             Cest = cest;
+            UnidadeId = unidadeId;
+            TipoProdutoId = tipoProdutoId;
+            ValorCompra = valorCompra;
+            ValorCusto = valorCusto;
+            ValorCustoMedio = valorCustoMedio;
+            PercentualLucro = percentualLucro;
+            ValorVenda = valorVenda;
+            EstoqueEntrada = estoqueEntrada;
+            EstoqueSaida = estoqueSaida;
+            EstoqueSaldo = estoqueSaldo;
             Ativo = ativo;
         }
 
@@ -94,6 +113,5 @@ namespace PlentyData.Models
         {
             unidade.Remove(_unidade);
         }
-               
     }
 }
